@@ -2,9 +2,14 @@
 import { ref } from 'vue'
 import SplashScreen from './components/SplashScreen.vue'
 import IconLink from './components/IconLink.vue'
-import bg from './assets/img/bg-1.jpg'
+import BackgroundCanvas from './components/BackgroundCanvas.vue'
 
-const links = [{ href: 'https://discord.com/users/1006899291824078858', icon: 'discord' }]
+const links = [
+  { href: 'https://t.me/zorreth', icon: 'telegram' },
+  { href: 'https://discord.com/users/1006899291824078858', icon: 'discord' },
+  { href: 'https://github.com/eliva1e', icon: 'github' },
+  { href: 'https://open.spotify.com/artist/3KFWoswTJ6GuEf9N1thuz2', icon: 'spotify' },
+]
 
 const showSplash = ref(true)
 
@@ -14,39 +19,37 @@ setTimeout(() => {
 </script>
 
 <template>
-  <SplashScreen :show-splash="showSplash" />
+  <SplashScreen v-if="showSplash" />
 
-  <img :src="bg" alt="Background" class="bg" />
+  <BackgroundCanvas />
 
   <main class="content">
     <h1 class="logo">zorreth</h1>
-
-    <div>
+    <div class="links">
       <IconLink v-for="link in links" :key="link.href" :href="link.href" :icon="link.icon" />
     </div>
   </main>
 </template>
 
 <style scoped>
-.bg {
-  position: fixed;
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: -10;
-}
-
 .content {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: 100%;
   font-size: 64px;
+  gap: 24px;
 }
 
 .logo {
   font-family: 'Trade Winds';
+  font-size: 80px;
+  margin: 0;
+}
+
+.links {
+  display: flex;
+  gap: 24px;
 }
 </style>
