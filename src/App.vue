@@ -29,17 +29,13 @@ setTimeout(() => {
 
 <template>
   <SplashScreen v-if="showSplash" />
-
-  <BackgroundCanvas />
+  <BackgroundCanvas v-if="!showSplash" />
 
   <main class="content">
     <h1 class="logo">zorreth</h1>
+
     <div class="links">
-      <UITooltip
-        v-for="link in links"
-        :key="link.href"
-        :tip="link.tip"
-      >
+      <UITooltip v-for="link in links" :key="link.href" :tip="link.tip">
         <IconLink :href="link.href" :icon="link.icon" />
       </UITooltip>
     </div>
